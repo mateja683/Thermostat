@@ -22,10 +22,33 @@ describe('Thermostat', function() {
       thermostat.down();
       expect(thermostat.temperature()).toEqual(19);
     });
-
-
   });
 
+  describe('setting min and max temps', function() {
+    it('alows for min temp of 10', function () {
+      for(var i = 0; i <= 10; i++) {
+        thermostat.down();
+      }
+      expect(thermostat.temperature()).toEqual(10);
+    });
+    it('allows max temp of 25 with power mode on', function() {
+      thermostat.powerModeOn();
+      for(var i = 0; i <= 5; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.temperature()).toEqual(25);
+    });
+    it('allows max temp of 32 with power mode off', function() {
+      thermostat.powerModeOff();
+      for(var i = 0; i <= 12; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.temperature()).toEqual(32);
+    });
+    it('expects power save mdoe on by default', function() {
+      expect(thermostat._powerSaveMode).toBe(true);
+    });
+  });
 
 
 
