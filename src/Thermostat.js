@@ -1,8 +1,10 @@
 function Thermostat(){
-  this._temperature = 20;
+  this.DEFAULTTEMP = 20;
+  this._temperature = this.DEFAULTTEMP;
+  this.MINIMUMTEMP = 10;
   this._powerSaveMode = true;
   this._color = 'yellow';
-};
+}
 
 Thermostat.prototype.temperature = function () {
   return this._temperature;
@@ -23,14 +25,18 @@ Thermostat.prototype.up = function() {
       return (this._temperature = 32);
     }
   }
-  return this._temperature = (this._temperature + 1);
+  return this._temperature += 1;
 };
 
 Thermostat.prototype.down = function() {
-  if(this._temperature <= 10) {
-    return (this._temperature = 10);
+  if (this._isMinTemp()) {
+    return (this._temperature = this.MINIMUMTEMP);
   }
-  return this._temperature = (this._temperature - 1);
+  return this._temperature -= 1;
+};
+
+Thermostat.prototype._isMinTemp = function() {
+  return (this._temperature === this.MINIMUMTEMP);
 };
 
 Thermostat.prototype.powerModeOn = function () {
@@ -41,7 +47,8 @@ Thermostat.prototype.powerModeOff = function () {
   this._powerSaveMode = false;
 };
 Thermostat.prototype.reset = function() {
-  return this._temperature = 20;
+  this._temperature = this.DEFAULTTEMP;
+  return this._temperature ;
 };
 Thermostat.prototype._setColor = function() {
   switch (true) {
@@ -54,6 +61,6 @@ Thermostat.prototype._setColor = function() {
     break;
 
     default:
-    this._color = 'yellow'
+    this._color = 'yellow';
   }
 };
