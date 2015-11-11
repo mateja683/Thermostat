@@ -49,6 +49,35 @@ describe('Thermostat', function() {
       expect(thermostat._powerSaveMode).toBe(true);
     });
   });
+  describe('reset temperature',function() {
+    it('reset button',function() {
+      thermostat.reset();
+      expect(thermostat.temperature()).toEqual(20)
+    });
+  });
+  describe('thermostat colors',function() {
+    it('green for less than 18',function() {
+      thermostat.down();
+      thermostat.down();
+      thermostat.down();
+      expect(thermostat.color()).toEqual('green')
+    });
+    it('yellow for less than 25 and greater than 18',function() {
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      expect(thermostat.color()).toEqual('yellow')
+    });
+    it('red for greater than 24',function() {
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      thermostat.up();
+      expect(thermostat.color()).toEqual('red')
+    });
+  });
+
 
 
 
