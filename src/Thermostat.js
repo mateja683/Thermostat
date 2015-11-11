@@ -46,10 +46,12 @@ Thermostat.prototype.powerModeOn = function () {
 Thermostat.prototype.powerModeOff = function () {
   this._powerSaveMode = false;
 };
+
 Thermostat.prototype.reset = function() {
   this._temperature = this.DEFAULTTEMP;
   return this._temperature ;
 };
+
 Thermostat.prototype._setColor = function() {
   switch (true) {
     case this._temperature < 18:

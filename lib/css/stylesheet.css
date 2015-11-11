@@ -1,4 +1,14 @@
-.temperature
+.temperaturered
+{
+    color: red;
+    font-size: 100px;
+    width: 200px;
+    height: 100px;
+    border:2px solid black;
+      line-height: :300 px;
+}
+
+.temperatureyellow
 {
     color: yellow;
     font-size: 100px;
@@ -6,4 +16,23 @@
     height: 100px;
     border:2px solid black;
       line-height: :300 px;
+}
+
+.temperaturegreen
+{
+    color: green;
+    font-size: 100px;
+    width: 200px;
+    height: 100px;
+    border:2px solid black;
+      line-height: :300 px;
+}
+
+.selectedButton {
+      background-color: blue;
+      color: white;
+}
+
+.inactiveButton {
+      background-color: grey;
 }
