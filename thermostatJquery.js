@@ -1,32 +1,36 @@
   $( document ).ready(function() {
 
+    function updateTemp() {
+      str = thermostat.temperature();
+      $('div.temperature').html( str );
+    }
+
     thermostat = new Thermostat();
     var str = thermostat.temperature();
     $('#PowerOn').addClass("selectedButton");
     $('#PowerOff').addClass("inactiveButton");
-    $('div.temperature').addClass("temperature"+thermostat.color());
+    $('div.temperature').addClass(thermostat.color());
     $('div.temperature').html( str );
 
     $('#Up').click(function() {
-      $('div.temperature').removeClass("temperature"+thermostat.color());
+      $('div.temperature').removeClass(thermostat.color());
       thermostat.up();
-      $('div.temperature').addClass("temperature"+thermostat.color());
-      str = thermostat.temperature();
-      $('div.temperature').html( str );
+      $('div.temperature').addClass(thermostat.color());
+      updateTemp();
     });
 
     $('#Down').click(function() {
-      $('div.temperature').removeClass("temperature"+thermostat.color());
+      $('div.temperature').removeClass(thermostat.color());
       thermostat.down();
-      $('div.temperature').addClass("temperature"+thermostat.color());
-      str = thermostat.temperature();
-      $('div.temperature').html( str );
+      $('div.temperature').addClass(thermostat.color());
+      updateTemp();
     });
 
     $('#Reset').click(function() {
+      $('div.temperature').removeClass(thermostat.color());
       thermostat.reset();
-      str = thermostat.temperature();
-      $('div.temperature').html( str );
+      $('div.temperature').addClass(thermostat.color());
+      updateTemp();
     });
 
     $('#PowerOn').click(function() {
@@ -35,8 +39,7 @@
       thermostat.powerModeOn();
       $('#PowerOn').addClass("selectedButton");
       $('#PowerOff').addClass("inactiveButton");
-      str = thermostat.temperature();
-      $('div.temperature').html( str );
+      updateTemp();
     });
 
     $('#PowerOff').click(function() {
@@ -45,8 +48,7 @@
       thermostat.powerModeOff();
       $('#PowerOff').addClass("selectedButton");
       $('#PowerOn').addClass("inactiveButton");
-      str = thermostat.temperature();
-      $('div.temperature').html( str );
+      updateTemp();
     });
 
 
